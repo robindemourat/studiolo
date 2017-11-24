@@ -3,7 +3,7 @@ Inventaire - make an archive navigation webapp out of a gspreadsheet
 
 Inventaire transforms a spreadsheet describing interconnected objects into an hypertext system allowing to navigate in it.
 
-![screencast](https://raw.githubusercontent.com/robindemourat/inventaire/master/screencast.gif)
+![screencast](https://github.com/robindemourat/inventaire/blob/master/screencast.gif?raw=true)
 
 # Prepare your data
 
