@@ -1,0 +1,27 @@
+/**
+ * style definitions for the Layout component
+ *
+ * @module inventaire/features/Layout
+ */
+
+@import '../../../parameters.scss';
+
+
+
+.inventaire-Layout{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+
+  padding: $gutter-large;
+
+
+  nav{
+    height: 10%;
+    padding: $gutter-medium;
+  }
+
+  .container{
+    height: 90%;
+  }
+}

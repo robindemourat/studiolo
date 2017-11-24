@@ -1,0 +1,173 @@
+/**
+ * style definitions for the Items component
+ *
+ * @module inventaire/features/Items
+ */
+
+@import '../../../parameters.scss';
+
+
+
+/*
+ * Primary layout
+ */
+
+.inventaire-Items
+{
+  display: flex;
+  flex-flow: row nowrap;
+
+  padding: $gutter-medium;
+
+  overflow: hidden;
+
+  height: 100%;
+
+  .works{
+    flex: 1;
+  }
+
+  .secondary{
+    display: flex;
+    flex-flow: row wrap;
+    overflow: hidden;
+    flex: 5;
+  }
+
+  .works,
+  .secondary,
+  .aside{
+    max-width: 100%;
+    transition: all $transition-default ease;
+  }
+
+  .works.inactive,
+  .secondary.inactive{
+    max-width: 0;
+  }
+
+  .secondary.active{
+    flex: 1;
+  }
+
+  .aside{
+    overflow: auto;
+    &.inactive{
+      max-width: 0;
+    }
+    &.active{
+      max-width: 100%;
+      flex: 1;
+    }
+  }
+
+  .connected-items{
+    padding: 0;
+    margin :0;
+    .connected-item{
+      list-style: none;
+      margin-bottom: $gutter-medium;
+      // padding: 0;
+      .anchor{
+        cursor: pointer;
+        margin: 0;
+        padding: 0;
+        .collection{
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  .inventaire-Collection {
+    flex: 1;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: stretch;
+    height: 100%;
+
+      transition: all $transition-default ease;
+
+    .items-list {
+      margin: 0;
+      padding: 0;
+      flex: 1;
+      overflow: auto;
+    }
+    .inventaire-Item{
+
+      transition: all $transition-default ease;
+
+      margin: 0;
+      list-style: none;
+      .item-body
+      {
+        display: none;
+      }
+      .item-name{
+        font-size: $fontsize-medium;
+        cursor: pointer;
+        transition: all $transition-default ease;
+      }
+
+      .item-back{
+        cursor: pointer;
+        &:hover{
+          font-weight: 800;
+        }
+      }
+
+      .item-video-wrapper{
+        padding-right: $gutter-medium;
+        display: block;
+        position: relative;
+      }
+
+      color: $color-text-dark;
+
+      &.active{
+        color: $color-text-dark;
+      }
+      &.related{
+        color: $color-text-medium;
+      }
+      &.inactive{
+        color: $color-text-pale;
+        &:not(.same-collection) {
+          .item-name{
+            padding: 0;
+            font-size: .1rem;
+          }        
+        }
+      }
+
+      &.selected{
+        .item-name{
+          font-size: $fontsize-big;
+        }
+        .item-body {
+          display: block;
+        }
+      }
+    }
+
+    &.active{
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    &.inactive{
+      max-width: 0;
+      overflow: hidden;
+    }
+
+    &.active,&.inactive{
+      .inventaire-Item{
+        max-height: 0;
+        &.selected{
+          max-height: 100%;
+        }
+      }
+    }
+  }
+}
