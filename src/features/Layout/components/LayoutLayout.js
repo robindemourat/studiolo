@@ -11,25 +11,40 @@ import './LayoutLayout.scss';
 const LoginLayout = ({
   children,
   loadingStatus = '',
-}) => (
-  <div className="inventaire-Layout">
-    <nav>
-      <h1>inventaire {loadingStatus && <span className="loading-status"> - {loadingStatus}</span>}</h1>
-    </nav>
+  colorGradientStart,
+  colorGradientEnd,
+  gradientDirection
+}) => [
+  <div
+    key={0}
+    className="background"
+    style={{
+        background: `linear-gradient( ${gradientDirection}, ${colorGradientStart} 0%, ${colorGradientEnd} 100%)`
+      }} />,
+  <div key={1} className="inventaire-Layout">
+    {children && <nav className="nav">
+      <h1><a href="/inventaire">inventaire</a> {loadingStatus && <span className="loading-status"> - {loadingStatus}</span>}</h1>
+      <h3>
+        expérimentations de formats de publication universitaire non-conventionnels.
+      </h3>
+    </nav>}
     <section className="container">
       {children ? children :
-      <section>
-        <p>
-            Ce site présente un inventaire de stratégies de publication universitaire multimodales.
-        </p>
-        <p>
-          <a href="/inventaire">Accéder à l'inventaire</a>
-        </p>
+      <section className="landing">
+        <div>
+          <h1>Inventaire</h1>
+          <h3>
+            expérimentations de formats de publication universitaire non-conventionnels.
+          </h3>
+          <p>
+            <a href="/inventaire">Accéder à l'inventaire</a>
+          </p>
+        </div>
       </section>
       }
     </section>
   </div>
-);
+];
 
 /**
  * Context data used by the component

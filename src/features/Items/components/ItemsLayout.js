@@ -22,7 +22,6 @@ const ItemsLayout = ({
   collectionsNames = [],
   collections = {},
   relatedItemsIds = [],
-
   router,
   itemIsUnHovered,
   actions: {
@@ -49,47 +48,47 @@ const ItemsLayout = ({
     </section>
     <section className={'secondary ' + (activeItemCollection ? activeItemCollection === 'pièces' ? 'inactive' : 'active' : '')}>
       {
-        collectionsNames
-        .filter(name => name !== 'pièces')
-        .sort()
-        .map((collectionName, index) => {
-          return (
-            <Collection
-              key={index}
-              title={collectionName}
-              items={collections[collectionName]}
-              router={router}
-              onItemEnter={itemIsHovered}
-              onItemLeave={itemIsUnHovered}
-              activeItemId={activeItemId}
-              activeItemCollection={activeItemCollection}
-              hoveredItemId={hoveredItemId}
-              hoveredItemCollection={hoveredItemCollection}
-              relatedItemsIds={relatedItemsIds}
-              setActiveItemId={setActiveItemId}
-              unsetActiveItemId={unsetActiveItemId}
-              status={activeItemCollection ? activeItemCollection === collectionName ? 'active' : 'inactive' : undefined} />
-          );
-        })
-      }
+          collectionsNames
+          .filter(name => name !== 'pièces')
+          .sort()
+          .map((collectionName, index) => {
+            return (
+              <Collection
+                key={index}
+                title={collectionName}
+                items={collections[collectionName]}
+                router={router}
+                onItemEnter={itemIsHovered}
+                onItemLeave={itemIsUnHovered}
+                activeItemId={activeItemId}
+                activeItemCollection={activeItemCollection}
+                hoveredItemId={hoveredItemId}
+                hoveredItemCollection={hoveredItemCollection}
+                relatedItemsIds={relatedItemsIds}
+                setActiveItemId={setActiveItemId}
+                unsetActiveItemId={unsetActiveItemId}
+                status={activeItemCollection ? activeItemCollection === collectionName ? 'active' : 'inactive' : undefined} />
+            );
+          })
+        }
     </section>
     <aside className={'aside ' + (activeItemId ? 'active' : 'inactive')}>
       <ul className="connected-items">
         {
-          connectedItems.map((item, index) => {
-            const name = item.titre || item.nom;
-            const move = () => {
-              const search = `inventaire?focus=${item.id}`;
-              router.push(search);
-              setActiveItemId(item.id);
-            };
-            return (
-              <li className="connected-item" key={index}>
-                <h4 className="anchor"><a onClick={move}>→ {name}<span className="collection"> - {item.collection.replace(/s$/, '')}</span></a></h4>
-              </li>
-            );
-          })
-        }
+            connectedItems.map((item, index) => {
+              const name = item.titre || item.nom;
+              const move = () => {
+                const search = `inventaire?focus=${item.id}`;
+                router.push(search);
+                setActiveItemId(item.id);
+              };
+              return (
+                <li className="connected-item" key={index}>
+                  <h4 className="anchor"><a onClick={move}>→ {name}<span className="collection"> - {item.collection.replace(/s$/, '')}</span></a></h4>
+                </li>
+              );
+            })
+          }
       </ul>
     </aside>
   </section>

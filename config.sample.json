@@ -1,7 +1,7 @@
 {
   "resetTimeMs": 2000,
   "dataKey": "your-spreadsheet-share-url",
-  "collectionsToRemove": ["bordel"],
+  "collectionsToRemove": ["bordel", "editors"],
   "nameFields": ["nom", "titre"],
   "extractedFields": ["tags", "personnes"]
 }

@@ -26,6 +26,11 @@ import {
   findRelatedIds,
 } from '../../helpers/data';
 
+import {
+  generateColors,
+  generateGradientDirection
+} from '../../helpers/colors';
+
 /*
  * ===========
  * ===========
@@ -59,7 +64,7 @@ export const getItems = () => ({
   type: GET_ITEMS,
   promise: () =>
     fetchData(dataKey)
-      .then(result => 
+      .then(result =>
         cleanIdioms(result, {
           collectionsToRemove,
           nameFields
@@ -70,8 +75,8 @@ export const getItems = () => ({
       .then(result => verifyIds(result))
       .then(result => {
         return extractedFields.reduce((p, fieldName) => {
-          return p.then(data => extractEntities(data || result, fieldName));
-        }, Promise.resolve())
+          return p.then(thatData => extractEntities(thatData || result, fieldName));
+        }, Promise.resolve());
       })
       .then(result => makeNetwork(result))
 });
@@ -126,7 +131,10 @@ const UI_DEFAULT_STATE = {
 
   links: [],
   nodes: [],
-  collections: []
+  collections: [],
+  colorGradientStart: '#FFF',
+  colorGradientEnd: '#FFF',
+  gradientDirection: 'to top',
 };
 /**
  * This redux reducer handles the ui state management (screen & modals opening)
@@ -149,11 +157,18 @@ function ui(state = UI_DEFAULT_STATE, action) {
           .map(thatId => state.nodes.find(n => n.id === thatId))
           .filter(d => d);
         }
+        const colors = generateColors(2);
+        const colorGradientStart = colors[0];
+        const colorGradientEnd = colors[1];
+        const gradientDirection = generateGradientDirection();
         return {
           ...state,
           activeItemId: action.id,
           activeItemCollection,
           connectedItems,
+          colorGradientStart,
+          colorGradientEnd,
+          gradientDirection,
         };
     case UNSET_ACTIVE_ITEM_ID:
         return {
@@ -161,6 +176,8 @@ function ui(state = UI_DEFAULT_STATE, action) {
           activeItemId: undefined,
           activeItemCollection: undefined,
           connectedItems: undefined,
+          colorGradientEnd: UI_DEFAULT_STATE.colorGradientEnd,
+          colorGradientStart: UI_DEFAULT_STATE.colorGradientStart,
         };
     case ITEM_IS_HOVERED:
       const relatedItemsIds = findRelatedIds(action.id, state.links);
@@ -277,6 +294,9 @@ const connectedItems = state => state.ui.connectedItems;
 const hoveredItemCollection = state => state.ui.hoveredItemCollection;
 const relatedItemsIds = state => state.ui.relatedItemsIds;
 const hoveredItemId = state => state.ui.hoveredItemId;
+const colorGradientStart = state => state.ui.colorGradientStart;
+const colorGradientEnd = state => state.ui.colorGradientEnd;
+const gradientDirection = state => state.ui.gradientDirection;
 const collections = state => state.data.collections;
 const collectionsNames = state => Object.keys(state.data.collections);
 const nodes = state => state.data.nodes;
@@ -289,6 +309,9 @@ export const selector = createStructuredSelector({
   activeItemId,
   activeItemCollection,
   connectedItems,
+  colorGradientStart,
+  colorGradientEnd,
+  gradientDirection,
 
   hoveredItemId,
   hoveredItemCollection,

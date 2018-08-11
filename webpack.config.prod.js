@@ -3,7 +3,6 @@
  * in production mode (standard + minify)
  */
 var webpack = require('webpack');
-// var UglifyEsPlugin = require('uglify-es-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 console.log('plugin')
@@ -14,15 +13,6 @@ const config = {
   module: sharedConfig.module,
   node: sharedConfig.node,
   plugins: sharedConfig.plugins
-    // .concat(
-    //     new UglifyJSPlugin({
-    //         compress: { 
-    //             warnings: false 
-    //         },
-    //         output: {
-    //             comments: false,
-    //         },
-    // }))
     .concat(
       new webpack.optimize.UglifyJsPlugin()
     )

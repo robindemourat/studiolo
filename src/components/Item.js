@@ -1,6 +1,8 @@
 import React from 'react';
-import ReactPlayer from 'react-player';
 import ImageGallery from 'react-image-gallery';
+
+import getImageUri from '../helpers/image-uri';
+import Player from './Player';
 
 import 'react-image-gallery/styles/scss/image-gallery.scss';
 
@@ -37,22 +39,37 @@ export default ({
         onMouseLeave={onMouseLeave}><a onClick={onFocus}>{titre}</a></h3>
       <div className="item-body">
         <p className="item-collection">{collection.replace(/s$/, '')}</p>
-        <p className="item-back"><a onClick={onUnFocus}>Index →</a></p>
+        <p className="item-back"><a onClick={onUnFocus}>Index ←</a></p>
         {status === 'selected' && item.url &&
           <p>
             <a href={item.url} target="blank">Site web →</a>
           </p>
         }
-        {status === 'selected' && item.description &&
-          <p>
-            {item.description}
-          </p>
-        }
         {
-          status === 'selected' && Array.isArray(item.images) && item.images.length > 0 &&
-          <ImageGallery items={item.images.map(i => ({original: i, thumbnail: i}))} />
+          status === 'selected' &&
+          Array.isArray(item.images) &&
+          item.images.length > 0 &&
+          (
+            item.images.length > 1 ?
+              <ImageGallery items={item.images.map(i => ({
+              original: getImageUri(i, 'original'),
+              thumbnail: getImageUri(i, 'thumbnail')
+            }))} />
+            :
+              <div className="single-image">
+                <img src={getImageUri(item.images[0], 'original')} />
+              </div>
+          )
         }
-        {status === 'selected' && item.video && <div className="item-video-wrapper"><ReactPlayer url={item.video} playing /></div>}
+        {status === 'selected' && item.video && <div className="item-video-wrapper">
+          <Player url={item.video} />
+        </div>}
+        {status === 'selected' && item.description &&
+          <blockquote dangerouslySetInnerHTML={{/* eslint react/no-danger : 0 */
+            __html: item.description.replace(/\\./g, '<br/>')
+          }} />
+        }
+
       </div>
     </li>
   );

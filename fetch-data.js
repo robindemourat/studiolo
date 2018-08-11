@@ -1,11 +1,14 @@
 const fs = require('fs-extra');
+const genId = require('uuid').v4;
 const get = require('axios').get;
 const Tabletop = require('tabletop');
 const url= require('./config').dataKey;
+const getImageUri = require('./src/helpers/image-uri');
 const dataFolder = 'data';
 
 function getSpreadsheet(publicSpreadsheetUrl, simpleSheet) {
   return new Promise((resolve, reject) => {
+    console.log('getting spreadsheet');
     try{
       Tabletop.init({ 
         key: publicSpreadsheetUrl,
@@ -21,19 +24,28 @@ function getSpreadsheet(publicSpreadsheetUrl, simpleSheet) {
 }
 
 function fetchImage(url) {
-  return get(url, {
-      responseType: 'arraybuffer'
+  const uri = getImageUri(url, 'original');
+  return get(uri, {
+      responseType: 'arraybuffer',
+      timeout: 10000
     })
     .then(response => new Buffer(response.data, 'binary'))
+    .catch(e => {
+      console.log('error with %s', uri, e.message);
+    })
 }
 
 function saveImage(url, filePath) {
-  console.log('saving image %s from %s', filePath, url);
+  console.info('saving image %s from %s', filePath, url);
   return fetchImage(url)
-            .then(buffer => fs.writeFile(filePath, buffer))
+            .then(buffer => {
+              console.log('done, writing');
+              return fs.writeFile(filePath, buffer)
+            })
 }
 
 function saveImages (data) {
+  console.log('save images');
   return new Promise((resolve, reject) => {
     const imagesToDownload = [];
     const newData = Object.keys(data).reduce((res, key) => ({
@@ -43,7 +55,14 @@ function saveImages (data) {
           const images = element.images.trim().split(',').map(s => s.trim());
           const localImages = [];
           images.forEach(url => {
-            const fileName = url.split('/').reverse()[0];
+            const id = genId();
+            let end = url.split('/').reverse()[0];
+            const ext = end.indexOf('.') > -1 ? end.split('.').pop() : 'png';
+            const fileName = `${id}.${ext}`
+            // if (fileName.indexOf('.') === -1) {
+            //   fileName += '.png';
+            // }
+            console.log('filename', fileName);
             const filePath = `${dataFolder}/${fileName}`;
             imagesToDownload.push({
               url,
@@ -62,12 +81,29 @@ function saveImages (data) {
       })
     }), {})
 
-    Promise.all(imagesToDownload.map(i => saveImage(i.url, i.filePath)))
-      .then(() => resolve(newData))
+    imagesToDownload.reduce((cur, image, index) => {
+      return cur
+        .then(() => {
+          
+          return saveImage(image.url, image.filePath)
+        })
+    }, Promise.resolve())
+    .then(() => resolve(newData))
+    .catch(e => {
+      console.log('oups');
+    })
+
+  //   Promise.all(imagesToDownload.map(i => saveImage(i.url, i.filePath)))
+  //     .then(() => resolve(newData))
+  //     .catch(e => {
+  //       console.log('error while fetching image');
+  //       console.error(e);
+  //     })
   });
 }
 
 function detabletopify(data) {
+  console.log('detabletopify');
   return new Promise((resolve, reject) => {
     resolve(
       Object.keys(data).reduce((res, key) => ({
@@ -82,7 +118,8 @@ function detabletopify(data) {
 }
 
 fs
-  .ensureDir('data')
+  .remove('data')
+  .then(() => fs.ensureDir('data'))
   .then(() => getSpreadsheet(url, false))
   .then(data => detabletopify(data))
   .then(data => saveImages(data))

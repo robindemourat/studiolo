@@ -46,7 +46,7 @@ export default () => ({dispatch, getState}) => (next) => (action) => {
       }
     // error --> dispatch action name + '_FAIL'
     ).catch((error) => {
-      console.log(error);
+      console.log(error);/* eslint no-console: 0*/
       setTimeout(() =>
         next({...rest, type: RESET})
       , resetTime);

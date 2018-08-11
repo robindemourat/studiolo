@@ -30,7 +30,7 @@ export const fetchData = (dataKey) =>
 export const cleanIdioms = (collections, {collectionsToRemove = [], nameFields = []}) =>
   new Promise((resolve) => {
     collectionsToRemove.forEach(colName => {
-      delete collections[colName]
+      delete collections[colName];
     });
     const clean = Object.keys(collections).reduce((res, key) => ({
       ...res,
@@ -38,8 +38,8 @@ export const cleanIdioms = (collections, {collectionsToRemove = [], nameFields =
                 // verify object has a name
                 .filter(data => {
                   return nameFields.some(field => {
-                    return typeof data[field] === 'string' && data[field].trim().length > 0
-                  })
+                    return typeof data[field] === 'string' && data[field].trim().length > 0;
+                  });
                 })
                 // split images
                 .map(data => ({
@@ -107,12 +107,19 @@ export const makeNetwork = (collections) =>
 export const verifyIds = (collections) =>
   new Promise((resolve) => {
     console.group('Data:ids verification');
+    const ids = [];
     const connectionsNames = Object.keys(collections);
     connectionsNames.forEach(collectionKey => {
       const collection = collections[collectionKey];
       collection.forEach(obj => {
         if (!obj.id || !obj.id.length) {
           console.error('No id found for object: ', obj);
+        }
+ else if (ids.indexOf(obj.id) > -1) {
+          console.error('Found a duplicate id : %s', obj.id);
+        }
+ else {
+          ids.push(obj.id);
         }
       });
     });
@@ -177,7 +184,8 @@ export const extractEntities = (collections, fieldKey = 'tags') =>
     ).sort((a, b) => {
       if (a > b) {
         return 1;
-      } else return -1;
+      }
+ else return -1;
     });
     entities = entities.map(tag => ({
       id: tag,
