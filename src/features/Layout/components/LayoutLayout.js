@@ -23,9 +23,9 @@ const LoginLayout = ({
       }} />,
   <div key={1} className="inventaire-Layout">
     {children && <nav className="nav">
-      <h1><a href="/inventaire">inventaire</a> {loadingStatus && <span className="loading-status"> - {loadingStatus}</span>}</h1>
+      <h1><a href="#/inventaire">inventaire</a> {loadingStatus && <span className="loading-status"> - {loadingStatus}</span>}</h1>
       <h3>
-        expérimentations de formats de publication universitaire non-conventionnels.
+        expérimentations de formats de publication universitaire en Arts, Lettres et Sciences Humaines et Sociales.
       </h3>
     </nav>}
     <section className="container">
@@ -34,10 +34,10 @@ const LoginLayout = ({
         <div>
           <h1>Inventaire</h1>
           <h3>
-            expérimentations de formats de publication universitaire non-conventionnels.
+            expérimentations de formats de publication universitaire en Arts, Lettres et Sciences Humaines et Sociales.
           </h3>
           <p>
-            <a href="/inventaire">Accéder à l'inventaire</a>
+            <a href="#/inventaire">Accéder à l'inventaire</a>
           </p>
         </div>
       </section>

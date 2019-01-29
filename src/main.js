@@ -10,7 +10,7 @@ import {render} from 'react-dom';
 import {Provider} from 'react-redux';
 import I18n from 'redux-i18n';
 
-import {browserHistory} from 'react-router';
+import {hashHistory} from 'react-router';
 import {syncHistoryWithStore} from 'react-router-redux';
 
 
@@ -29,7 +29,7 @@ window.store = store;
 
 
 // Create an enhanced history that syncs navigation events with the store
-const history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(hashHistory, store);
 
 
 const mountNode = document.getElementById('mount');
