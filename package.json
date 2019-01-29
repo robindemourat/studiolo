@@ -10,15 +10,18 @@
     "comb": "csscomb src",
     "test": "mocha --compilers js:babel-core/register -R spec --recursive $(find src -name '*.spec.js')",
     "deploy": "npm run build && npm run fetch-data && surge ./",
+    "build-for-ghp": "rm -rf docs;mkdir docs;cp -a build docs/build;cp -a data docs/data;cp index.html docs/index.html",
     "fetch-data": "node fetch-data",
     "add-fetched-data": "git add data",
-    "add-build": "git add build"
+    "add-docs": "git add docs"
   },
   "pre-commit": [
     "lint",
     "build",
     "comb",
-    "fetch-data"
+    "fetch-data",
+    "build-for-ghp",
+    "add-docs"
   ],
   "author": "Robin de Mourat <robin.demourat@gmail.com> (https://github.com/robindemourat)",
   "engines": {
