@@ -74,7 +74,8 @@ export default ({
                   onMouseLeave={onMouseLeave}
                   onSelect={setActiveItemId}
                   onDeselect={unsetActiveItemId}
-                  status={getStatus()} />
+                  status={getStatus()} 
+                />
               );
             })
           }

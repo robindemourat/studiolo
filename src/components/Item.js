@@ -21,22 +21,41 @@ export default ({
     id,
   } = item;
   const onFocus = () => {
-    const search = `inventaire?focus=${id}`;
-    router.push(search);
-    onSelect(item.id);
+    // console.log('on focus, status', status);
+    // if (status === 'active') {
+      const search = `inventaire?focus=${id}`;
+      router.push(search);
+      onSelect(item.id);
+    // } else {
+    //   onMouseEnter();
+    // }
   };
+  const onToggleLinkedElements = () => {
+    if (status === 'active') {
+      onMouseLeave();
+    } else {
+      onMouseEnter();
+    }
+  }
   const onUnFocus = () => {
     router.push('/inventaire');
     onDeselect(item.id);
+    onMouseLeave();
   };
   return (
     <li className={'inventaire-Item ' + (status || '')}>
       <h3
         className="item-name"
-        onMouseOver={onMouseEnter}
-        onMouseMove={onMouseEnter}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}><a onClick={onFocus}>{titre}</a></h3>
+        // onMouseOver={onMouseEnter}
+        // onMouseMove={onMouseEnter}
+        // {onMouseEnter={onMouseEnter}}
+        // onMouseLeave={onMouseLeave}
+      >
+        <a>
+          <span  onClick={onFocus}>{titre}</span>
+          <button className="linked-button" onClick={onToggleLinkedElements}>🔗</button>
+        </a>
+      </h3>
       <div className="item-body">
         <p className="item-collection">{collection.replace(/s$/, '')}</p>
         <p className="item-back"><a onClick={onUnFocus}>Index ←</a></p>
@@ -61,9 +80,13 @@ export default ({
               </div>
           )
         }
-        {status === 'selected' && item.video && <div className="item-video-wrapper">
-          <Player url={item.video} />
-        </div>}
+        {
+          status === 'selected' && 
+          item.video && 
+          <div className="item-video-wrapper">
+            <Player url={item.video} />
+          </div>
+        }
         {status === 'selected' && item.description &&
           <blockquote dangerouslySetInnerHTML={{/* eslint react/no-danger : 0 */
             __html: item.description.replace(/\\./g, '<br/>')

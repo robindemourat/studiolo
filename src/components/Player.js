@@ -66,14 +66,19 @@ export default class Player extends Component {
       onPlayerReady
     } = this;
 
+    console.log('in video', url);
+
     const bindRef = player => {
       this.player = player;
     };
 
-    return (<ReactPlayer
-      ref={bindRef}
-      url={url}
-      onReady={onPlayerReady}
-      playing />);
+    return (
+      <ReactPlayer
+        ref={bindRef}
+        url={url}
+        onReady={onPlayerReady}
+        playing 
+      />
+    );
   }
 }

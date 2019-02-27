@@ -6,7 +6,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import {uniqBy} from 'lodash';
 import Collection from '../../../components/Collection';
 
 import './ItemsLayout.scss';
@@ -50,12 +50,17 @@ const ItemsLayout = ({
       {
           collectionsNames
           .filter(name => name !== 'pièces')
-          .sort()
+          .sort((a, b) => {
+            if (a > b && b !== 'tags') {
+              return 1;
+            }
+            return -1;
+          })
           .map((collectionName, index) => {
             return (
               <Collection
                 key={index}
-                title={collectionName}
+                title={collectionName !== 'tags' ? collectionName: 'connecteurs'}
                 items={collections[collectionName]}
                 router={router}
                 onItemEnter={itemIsHovered}
@@ -75,16 +80,28 @@ const ItemsLayout = ({
     <aside className={'aside ' + (activeItemId ? 'active' : 'inactive')}>
       <ul className="connected-items">
         {
-            connectedItems.map((item, index) => {
+            uniqBy(
+              connectedItems,
+              d => d.id
+            )
+            .sort((a, b) => {
+              if (a.collection > b.collection) {
+                return 1;
+              }
+              return -1;
+            })
+            .map((item, index) => {
               const name = item.titre || item.nom;
               const move = () => {
                 const search = `inventaire?focus=${item.id}`;
                 router.push(search);
                 setActiveItemId(item.id);
               };
+              let relatedType = item.collection.replace(/s$/, '');
+              relatedType = relatedType === 'tag' ? 'connecteur': relatedType;
               return (
                 <li className="connected-item" key={index}>
-                  <h4 className="anchor"><a onClick={move}>→ {name}<span className="collection"> - {item.collection.replace(/s$/, '')}</span></a></h4>
+                  <h4 className="anchor"><a onClick={move}>→ {name}<span className="collection"> - {relatedType}</span></a></h4>
                 </li>
               );
             })

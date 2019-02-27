@@ -8,12 +8,15 @@ import PropTypes from 'prop-types';
 import './LayoutLayout.scss';
 
 
-const LoginLayout = ({
+const LayoutLayout = ({
   children,
   loadingStatus = '',
   colorGradientStart,
   colorGradientEnd,
-  gradientDirection
+  gradientDirection,
+  actions: {
+    setActiveItemId
+  }
 }) => [
   <div
     key={0}
@@ -23,21 +26,21 @@ const LoginLayout = ({
       }} />,
   <div key={1} className="inventaire-Layout">
     {children && <nav className="nav">
-      <h1><a href="#/inventaire">inventaire</a> {loadingStatus && <span className="loading-status"> - {loadingStatus}</span>}</h1>
+      <h1><a onClick={() => setActiveItemId(undefined)} href="#/inventaire">panorama</a> {/*loadingStatus && <span className="loading-status"> - {loadingStatus}</span>*/}</h1>
       <h3>
-        expérimentations de formats de publication universitaire en Arts, Lettres et Sciences Humaines et Sociales.
+        un cabinet de curiosité sur les expériences en formats de publication universitaire dans le champ des Arts, Lettres et Sciences Humaines et Sociales.
       </h3>
     </nav>}
     <section className="container">
       {children ? children :
       <section className="landing">
         <div>
-          <h1>Inventaire</h1>
+          <h1>Panorama</h1>
           <h3>
-            expérimentations de formats de publication universitaire en Arts, Lettres et Sciences Humaines et Sociales.
+            un cabinet de curiosité sur les expériences en formats de publication universitaire dans le champ des Arts, Lettres et Sciences Humaines et Sociales.
           </h3>
           <p>
-            <a href="#/inventaire">Accéder à l'inventaire</a>
+            <a href="#/inventaire">Accéder au panorama</a>
           </p>
         </div>
       </section>
@@ -49,7 +52,7 @@ const LoginLayout = ({
 /**
  * Context data used by the component
  */
-LoginLayout.contextTypes = {
+LayoutLayout.contextTypes = {
 
   /**
    * Un-namespaced translate function
@@ -58,4 +61,4 @@ LoginLayout.contextTypes = {
 };
 
 
-export default LoginLayout;
+export default LayoutLayout;
