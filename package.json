@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Todo",
   "main": "dist/entry.js",
+  "homepage": "https://robindemourat.github.io/inventaire/",
   "scripts": {
     "dev": "kotatsu serve --config ./webpack.config.dev.js --progress --babel --index ./index.html --public ./ ./src/main.js",
     "build": "npm run fetch-data;kotatsu build client ./src/main.js -o build  --progress --config ./webpack.config.prod.js --babel",
@@ -10,7 +11,7 @@
     "comb": "csscomb src",
     "test": "mocha --compilers js:babel-core/register -R spec --recursive $(find src -name '*.spec.js')",
     "deploy": "npm run build && npm run fetch-data && surge ./",
-    "build-for-ghp": "rm -rf docs;mkdir docs;cp -a build docs/build;cp -a data docs/data;cp index.html docs/index.html",
+    "build-for-ghp": "rm -rf docs;mkdir docs;cp -a build docs/build;cp -a data docs/data;cp index.html docs/index.html;node updateIndexGhp",
     "fetch-data": "node fetch-data",
     "add-fetched-data": "git add data",
     "add-docs": "git add docs"
