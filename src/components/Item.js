@@ -33,10 +33,11 @@ export default ({
   const onToggleLinkedElements = () => {
     if (status === 'active') {
       onMouseLeave();
-    } else {
+    }
+ else {
       onMouseEnter();
     }
-  }
+  };
   const onUnFocus = () => {
     router.push('/inventaire');
     onDeselect(item.id);
@@ -45,14 +46,9 @@ export default ({
   return (
     <li className={'inventaire-Item ' + (status || '')}>
       <h3
-        className="item-name"
-        // onMouseOver={onMouseEnter}
-        // onMouseMove={onMouseEnter}
-        // {onMouseEnter={onMouseEnter}}
-        // onMouseLeave={onMouseLeave}
-      >
+        className="item-name">
         <a>
-          <span  onClick={onFocus}>{titre}</span>
+          <span onClick={onFocus}>{titre}</span>
           <button className="linked-button" onClick={onToggleLinkedElements}>🔗</button>
         </a>
       </h3>
@@ -81,8 +77,8 @@ export default ({
           )
         }
         {
-          status === 'selected' && 
-          item.video && 
+          status === 'selected' &&
+          item.video &&
           <div className="item-video-wrapper">
             <Player url={item.video} />
           </div>

@@ -66,8 +66,6 @@ export default class Player extends Component {
       onPlayerReady
     } = this;
 
-    console.log('in video', url);
-
     const bindRef = player => {
       this.player = player;
     };
@@ -77,8 +75,7 @@ export default class Player extends Component {
         ref={bindRef}
         url={url}
         onReady={onPlayerReady}
-        playing 
-      />
+        playing />
     );
   }
 }

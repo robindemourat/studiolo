@@ -60,7 +60,7 @@ const ItemsLayout = ({
             return (
               <Collection
                 key={index}
-                title={collectionName !== 'tags' ? collectionName: 'connecteurs'}
+                title={collectionName !== 'tags' ? collectionName : 'connecteurs'}
                 items={collections[collectionName]}
                 router={router}
                 onItemEnter={itemIsHovered}
@@ -98,7 +98,7 @@ const ItemsLayout = ({
                 setActiveItemId(item.id);
               };
               let relatedType = item.collection.replace(/s$/, '');
-              relatedType = relatedType === 'tag' ? 'connecteur': relatedType;
+              relatedType = relatedType === 'tag' ? 'connecteur' : relatedType;
               return (
                 <li className="connected-item" key={index}>
                   <h4 className="anchor"><a onClick={move}>→ {name}<span className="collection"> - {relatedType}</span></a></h4>
