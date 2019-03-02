@@ -5,6 +5,7 @@ const Tabletop = require('tabletop');
 const url= require('./config').dataKey;
 const getImageUri = require('./src/helpers/image-uri');
 const dataFolder = 'data';
+const basePath = require('./package.json').homepage;
 
 function getSpreadsheet(publicSpreadsheetUrl, simpleSheet) {
   return new Promise((resolve, reject) => {
@@ -62,7 +63,7 @@ function saveImages (data) {
             // if (fileName.indexOf('.') === -1) {
             //   fileName += '.png';
             // }
-            console.log('filename', fileName);
+            // console.log('filename', fileName);
             const filePath = `${dataFolder}/${fileName}`;
             imagesToDownload.push({
               url,
@@ -71,9 +72,10 @@ function saveImages (data) {
             });
             localImages.push(filePath)
           })
+            // console.log('local images', localImages);
           return {
             ...element,
-            images: localImages
+            images: localImages.map(path => `${basePath}${path}`)
           }
         } else {
           return element;
@@ -90,7 +92,7 @@ function saveImages (data) {
     }, Promise.resolve())
     .then(() => resolve(newData))
     .catch(e => {
-      console.log('oups');
+      console.log('oups', e);
     })
 
   //   Promise.all(imagesToDownload.map(i => saveImage(i.url, i.filePath)))
