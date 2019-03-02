@@ -4,6 +4,7 @@ import Item from './Item';
 
 export default ({
   title = '',
+  description = '',
   items = [],
   router,
 
@@ -23,7 +24,12 @@ export default ({
 }) => {
   return (
     <div className={'inventaire-Collection ' + (status || '')}>
-      <h2>{title}</h2>
+      <div className="collection-header">
+        <h2 className="title">{title}</h2>
+        <div className="description">
+          {description}
+        </div>
+      </div>
       <ul className="items-list">
         {
             items

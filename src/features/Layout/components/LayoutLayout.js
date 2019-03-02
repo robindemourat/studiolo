@@ -4,18 +4,22 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router';
+
 
 import './LayoutLayout.scss';
 
 
 const LayoutLayout = ({
   children,
-  loadingStatus = '',
+  // loadingStatus = '',
   colorGradientStart,
   colorGradientEnd,
   gradientDirection,
   actions: {
-    setActiveItemId
+    // setActiveItemId,
+    unsetActiveItemId,
+    itemIsUnhovered,
   }
 }) => [
   <div
@@ -25,22 +29,36 @@ const LayoutLayout = ({
         background: `linear-gradient( ${gradientDirection}, ${colorGradientStart} 0%, ${colorGradientEnd} 100%)`
       }} />,
   <div key={1} className="inventaire-Layout">
-    {children && <nav className="nav">
-      <h1><a onClick={() => setActiveItemId(undefined)} href="#/inventaire">panorama</a> {/*loadingStatus && <span className="loading-status"> - {loadingStatus}</span>*/}</h1>
+    {children &&
+    <nav className="nav">
+      <h1>
+        <Link
+          onClick={() => {
+          // setActiveItemId(undefined);
+          unsetActiveItemId(undefined);
+          itemIsUnhovered(undefined);
+        }} to="/cabinet">
+          studiolo
+        </Link> {/*loadingStatus && <span className="loading-status"> - {loadingStatus}</span>*/}</h1>
       <h3>
-        un cabinet de curiosité sur les expériences en formats de publication universitaire dans le champ des Arts, Lettres et Sciences Humaines et Sociales.
+        <Link className="nav-link" to="/cabinet">Cabinet</Link>
+        <Link
+          className="nav-link" activeClassName="active" style={{marginLeft: '1rem'}}
+          to="/methodologie">Méthodologie</Link>
+        {/*un cabinet de curiosités sur les formats expérimentaux de publication des recherches en Arts, Lettres et Sciences Humaines et Sociales.*/}
       </h3>
     </nav>}
     <section className="container">
       {children ? children :
       <section className="landing">
         <div>
-          <h1>Panorama</h1>
+          <h1>Studiolo</h1>
           <h3>
-            un cabinet de curiosité sur les expériences en formats de publication universitaire dans le champ des Arts, Lettres et Sciences Humaines et Sociales.
+            un cabinet de curiosités sur les formats expérimentaux de publication des recherches en Arts, Lettres et Sciences Humaines et Sociales.
           </h3>
           <p>
-            <a href="#/inventaire">Accéder au panorama</a>
+            <a href="#/cabinet">Cabinet</a>
+            <a style={{marginLeft: '1rem'}} href="#/methodologie">Méthodologie</a>
           </p>
         </div>
       </section>

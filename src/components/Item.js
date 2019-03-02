@@ -23,7 +23,7 @@ export default ({
   const onFocus = () => {
     // console.log('on focus, status', status);
     // if (status === 'active') {
-      const search = `inventaire?focus=${id}`;
+      const search = `cabinet?focus=${id}`;
       router.push(search);
       onSelect(item.id);
     // } else {
@@ -39,7 +39,7 @@ export default ({
     }
   };
   const onUnFocus = () => {
-    router.push('/inventaire');
+    router.push('/cabinet');
     onDeselect(item.id);
     onMouseLeave();
   };
@@ -48,7 +48,7 @@ export default ({
       <h3
         className="item-name">
         <a>
-          <span onClick={onFocus}>{titre}</span>
+          <span className="item-title" onClick={onFocus}>{titre}</span>
           <button className="linked-button" onClick={onToggleLinkedElements}>🔗</button>
         </a>
       </h3>
@@ -83,10 +83,21 @@ export default ({
             <Player url={item.video} />
           </div>
         }
-        {status === 'selected' && item.description &&
-          <blockquote dangerouslySetInnerHTML={{/* eslint react/no-danger : 0 */
-            __html: item.description.replace(/\\./g, '<br/>')
-          }} />
+        {status === 'selected' && item.citation &&
+          <div className="citation-container">
+            <blockquote
+              className="citation"
+              dangerouslySetInnerHTML={{/* eslint react/no-danger : 0 */
+                __html: item.citation.replace(/\\./g, '<br/>')
+              }} />
+            <div>
+              <a
+                target="blank" rel="noopener"
+                href={item.citation_source_url}>
+                {item.citation_source_nom}
+              </a>
+            </div>
+          </div>
         }
 
       </div>

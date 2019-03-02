@@ -38,6 +38,13 @@
       padding-right: $gutter-medium;
       margin-right: $gutter-medium;
     }
+
+    .nav-link{
+      opacity: .5;
+      &.active{
+        opacity: 1;
+      }
+    }
   }
 
   .container{

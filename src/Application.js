@@ -14,6 +14,7 @@ import './Application.scss';
 import Layout from './features/Layout/components/LayoutContainer.js';
 
 import Items from './features/Items/components/ItemsContainer.js';
+import Methodology from './components/Methodology';
 
 
 /**
@@ -23,7 +24,8 @@ import Items from './features/Items/components/ItemsContainer.js';
 const Application = ({history}) => (
   <Router history={history}>
     <Route path="/" component={Layout}>
-      <Route path="/inventaire" component={Items} />
+      <Route path="/cabinet" exact component={Items} />
+      <Route path="/methodologie" component={Methodology} />
     </Route>
   </Router>
 );

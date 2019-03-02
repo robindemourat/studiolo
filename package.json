@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Todo",
   "main": "dist/entry.js",
-  "homepage": "https://robindemourat.github.io/inventaire/",
+  "homepage": "https://robindemourat.github.io/studiolo/",
   "scripts": {
     "dev": "kotatsu serve --config ./webpack.config.dev.js --progress --babel --index ./index.html --public ./ ./src/main.js",
     "build": "npm run fetch-data;kotatsu build client ./src/main.js -o build  --progress --config ./webpack.config.prod.js --babel",
