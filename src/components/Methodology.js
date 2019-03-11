@@ -4,7 +4,7 @@ export default () => (
   <div className="methodology">
     <h1>Studiolo</h1>
     <h2><em>
-        Un cabinet de curiosités sur les formats expérimentaux de publication des recherches en Arts, Lettres et Sciences Humaines et Sociales.
+        Un cabinet de curiosités sur les expériences de publication des recherches en Sciences Humaines et Sociales, Arts et Lettres.
     </em></h2>
     <p>L'objectif de ce site est double :</p>
     <ol>
@@ -18,13 +18,17 @@ export default () => (
       <li>les expérimentations portées principalement par un projet d'optimisation économique et organisationnelle des chaînes de production éditoriale</li>
       <li>les expérimentations portées principalement par une remise en question des institutions (au sens de modes de reproduction des pratiques et des conduites) de la publication scientifique : modalités de filtrage et d'amplification (méthodes de revue et de sélection, modalités de diffusion des contributions, ...), modalités sociales de l'écriture et nouvelles géographies de l'auteur (du commentaire en ligne aux formes contributives telles que le wiki en passant par l'invention des carnets de recherche électroniques), fixité du texte scientifique et stabilité des énoncés (versionnage des publications, &hellip;)</li>
     </ul>
+    <p>
+      Certains des points énumérés ci-dessus peuvent être présents dans les expérimentations étudiées, mais c'est avant tout la spécificité du projet intellectuel qui doit être au centre de la démarche répertoriée. 
+    </p>
     <p>Ce cabinet de curiosités a vocation à être une ressource pour un travail d'écriture dans le cadre de ma thèse, mais il est également en lui-même le lieu de plusieurs activités critiques :</p>
     <ul>
       <li><strong>sélectionner</strong> : choisir quelles pièces rentrent dans le champ d'investigation</li>
       <li><strong>documenter</strong> : choisir quelles images, vidéos, extraits, retenir dans le cadre de la collection</li>
       <li><strong>décrire</strong> : choisir un ensemble de descripteurs tournés vers l'exploration des tensions à l'oeuvre entre le format de la publication en SHS et ces expériences marginales</li>
       <li><strong>mettre en relation</strong> : choisir quelles expériences relier entre elles par le biais d'un design permettant d'explorer les réseaux sous-jacents à la collection de pièces</li>
-    </ul><h1 >Les règles d'admission méthodologique dans le cabinet de curiosités</h1><h2 >Pièces</h2><h3 >Définition d'une pièce et critères d'admission</h3>
+    </ul>
+    <h1 >Les règles d'admission méthodologique dans le cabinet de curiosités</h1><h2 >Pièces</h2><h3 >Définition d'une pièce et critères d'admission</h3>
     <p>
       <em><strong>
         Une pièce est une unité matérielle et intellectuelle identifiable comme le produit d'un geste de publication par un collectif comprenant un chercheur en arts & lettres et sciences humaines et sociales.
@@ -50,8 +54,8 @@ export default () => (
     <p>Les personnes impliquées dans la confection de la pièce. Dans les données, elles peuvent être typées avec des r&ocirc;les spécifiques (éditeur, écrivain, designer, développeur, &hellip;) mais ces types sont volontairement non représentés dans l'interface de consultation du studiolo.</p><h3 >citation</h3>
     <p>Un extrait textuel issu des créateurs de la pièce permettant d'en comprendre les motivations, les intentions et les modalités de mise en oeuvre.</p><h3 >vidéo</h3>
     <p>Une vidéo permettant de se faire une idée de l'expérience vécue de la pièce. Cela peut être une captation directe, ou une élocution (vidéo, conférence) permettant de s'en faire une idée indirecte.</p><h3 >copies d'écrans</h3>
-    <p>Elles doivent représenter une ou plusieurs vues de la la pièce telle qu'elle est expérimentée quand elle est consultée (et pas uniquement la page de garde et pas la page de présentation).</p><h3 >perspectives</h3>
-    <p>J'emploie le terme "perspective de recherche" pour désigner les différentes communautés épistémo-sociales auxquels une pièce se rapporte. Il s'agit d'une manière de contourner les notions de discipline, sous-discipline &hellip; et les problèmes de taxonomie et de classement qu'elles peuvent poser, en préférant un mode de description cumulatif et inclusif.</p><h3 >médiums expressifs</h3>
+    <p>Elles doivent représenter une ou plusieurs vues de la la pièce telle qu'elle est expérimentée quand elle est consultée (et pas uniquement la page de garde et pas la page de présentation).</p><h3 >perspectives épistémo-sociales</h3>
+    <p>J'emploie le terme "perspective" pour désigner les différentes communautés épistémo-sociales auxquels une pièce se rapporte. Il s'agit d'une manière de désigner tout en contournant notions de discipline, sous-discipline &hellip; et les problèmes de taxonomie et de classement qu'elles peuvent poser, en préférant un mode de description cumulatif et inclusif.</p><h3 >médiums expressifs</h3>
     <p>Il s'agit de lister les différentes techniques d'expression employées dans le cadre de la publication pour mettre en oeuvre un argument.</p>
     <p />
     <p>Il s'agit d'une taxonomie ouverte, dont la pertinence dépend de la stratégie rhétorique sous-jacente à l'utilisation de tel ou tel médium dans la pièce :</p>
@@ -75,9 +79,8 @@ export default () => (
       <li>livre</li>
       <li>compagnon</li>
       <li>... </li>
-    </ul><h3 >pays concernés</h3>
-    <p>Il s'agit de situer le contexte d'élaboration de la pièce de manière à pouvoir l'analyser en fonction des modes d'organisation et des histoires de chaque théâtre national.</p><h2 >Publications</h2><h3 >Définition d'une publication et critères d'admission</h3>
-    <p />
+    </ul>
+    
     <p>
       <em><strong>
     Une collection est un groupement délimité et intentionnel de pièces. C'est par exemple une collection d'ouvrages ou de cédéroms, une revue universitaire en ligne, ou encore un recueil de textes. Elle doit faire davantage que partager des listes de lecture (ce n'est pas un annuaire) et doit avoir eu un r&ocirc;le éditorial dans la confection de la pièce pour être considérée comme une publication.
@@ -87,17 +90,17 @@ export default () => (
     <p>Critères d'admission d'une collection dans le studiolo :</p>
     <p />
     <ul>
-      <li>au moins une pièce doit être produite par cette collection - limite stricte</li>
-      <li>organisation et modalité d'existence intéressantes en tant que telles - limite souple et facultative</li>
+      <li>au moins une pièce doit être produite par cette collection - limite alternative</li>
+      <li>organisation et modalité d'existence intéressantes en tant que telles - limite alternative</li>
     </ul><h2 >Organisations</h2><h3 >Définition d'une organisation et critères d'admission</h3>
     <p>
       <em><strong>
-      Une organisation est un collectif identifiable et mu par des buts déterminés, impliqué dans l'élaboration d'une pièce. Ce terme peut désigner : un laboratoire, une entreprise ou maison d'édition, une institution publique ou privée &hellip;
+      Une organisation est un collectif identifiable et mu par des buts déterminés, impliqué dans l'élaboration d'une pièce. Ce terme peut désigner par exemple : un laboratoire, une entreprise ou maison d'édition, une institution publique ou privée &hellip;
       </strong></em>
     </p>
     <p>Critères d'admission d'une organisation dans le studiolo :</p>
     <ul>
-      <li>au moins une pièce doit être produites par cette organisation - limite stricte</li>
+      <li>au moins une pièce doit être produites par cette organisation - limite facultative</li>
       <li>démarche et buts tournés vers l'expérimentation des marges de la publication universitaire - limite souple</li>
     </ul>
 

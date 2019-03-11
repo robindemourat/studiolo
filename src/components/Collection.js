@@ -41,6 +41,7 @@ export default ({
                 return -1;
               }
             })
+            .filter(item => item.id && item.id.length)
             .map((item, index) => {
               const onMouseEnter = () => {
                 onItemEnter(item.id, title);
