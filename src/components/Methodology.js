@@ -19,7 +19,7 @@ export default () => (
       <li>les expérimentations portées principalement par une remise en question des institutions (au sens de modes de reproduction des pratiques et des conduites) de la publication scientifique : modalités de filtrage et d'amplification (méthodes de revue et de sélection, modalités de diffusion des contributions, ...), modalités sociales de l'écriture et nouvelles géographies de l'auteur (du commentaire en ligne aux formes contributives telles que le wiki en passant par l'invention des carnets de recherche électroniques), fixité du texte scientifique et stabilité des énoncés (versionnage des publications, &hellip;)</li>
     </ul>
     <p>
-      Certains des points énumérés ci-dessus peuvent être présents dans les expérimentations étudiées, mais c'est avant tout la spécificité du projet intellectuel qui doit être au centre de la démarche répertoriée. 
+      Certains des points énumérés ci-dessus peuvent être présents dans les expérimentations étudiées, mais c'est avant tout la spécificité du projet intellectuel qui doit être au centre de la démarche répertoriée.
     </p>
     <p>Ce cabinet de curiosités a vocation à être une ressource pour un travail d'écriture dans le cadre de ma thèse, mais il est également en lui-même le lieu de plusieurs activités critiques :</p>
     <ul>
@@ -80,7 +80,7 @@ export default () => (
       <li>compagnon</li>
       <li>... </li>
     </ul>
-    
+
     <p>
       <em><strong>
     Une collection est un groupement délimité et intentionnel de pièces. C'est par exemple une collection d'ouvrages ou de cédéroms, une revue universitaire en ligne, ou encore un recueil de textes. Elle doit faire davantage que partager des listes de lecture (ce n'est pas un annuaire) et doit avoir eu un r&ocirc;le éditorial dans la confection de la pièce pour être considérée comme une publication.
