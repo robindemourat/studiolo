@@ -27,10 +27,12 @@ const ItemsLayout = ({
   relatedItemsIds = [],
   router,
   itemIsUnHovered,
+  activeTag,
   actions: {
     itemIsHovered,
     setActiveItemId,
     unsetActiveItemId,
+    setActiveTag,
   }
 }) => (
   <section className="inventaire-Items">
@@ -90,6 +92,28 @@ const ItemsLayout = ({
         }
     </section>
     <aside className={'aside ' + (activeItemId ? 'active' : 'inactive')}>
+      <div className="tags">
+        {
+          uniqBy(
+            connectedItems,
+            d => d.collection
+          )
+          .map((item, index) => {
+            const handleClick = () => {
+              if (item.collection === activeTag) {
+                setActiveTag(undefined);
+              } else {
+                setActiveTag(item.collection)
+              }
+            }
+            return (
+              <span onClick={handleClick} className={`tag ${activeTag && activeTag === item.collection ? 'is-active': ''}`} key={index}>
+                {item.collection}
+              </span>
+            )
+          })
+        }
+      </div>
       <ul className="connected-items">
         {
             uniqBy(
@@ -101,6 +125,12 @@ const ItemsLayout = ({
                 return 1;
               }
               return -1;
+            })
+            .filter(item => {
+              if (activeTag) {
+                return item.collection === activeTag;
+              }
+              return true;
             })
             .map((item, index) => {
               const name = item.titre || item.nom;

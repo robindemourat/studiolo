@@ -47,6 +47,7 @@ export const SET_ACTIVE_ITEM_ID = 'SET_ACTIVE_ITEM_ID';
 export const UNSET_ACTIVE_ITEM_ID = 'UNSET_ACTIVE_ITEM_ID';
 export const ITEM_IS_HOVERED = 'ITEM_IS_HOVERED';
 export const ITEM_IS_UNHOVERED = 'ITEM_IS_UNHOVERED';
+export const SET_ACTIVE_TAG = 'SET_ACTIVE_TAG';
 
 
 /*
@@ -102,6 +103,11 @@ export const itemIsUnHovered = id => ({
   id
 });
 
+export const setActiveTag = tag => ({
+  type: SET_ACTIVE_TAG,
+  tag
+});
+
 /*
  * ===========
  * ===========
@@ -135,6 +141,7 @@ const UI_DEFAULT_STATE = {
   colorGradientStart: '#FFF',
   colorGradientEnd: '#FFF',
   gradientDirection: 'to top',
+  activeTag: undefined,
 };
 /**
  * This redux reducer handles the ui state management (screen & modals opening)
@@ -219,6 +226,11 @@ function ui(state = UI_DEFAULT_STATE, action) {
     case GET_ITEMS + '_RESET':
       loadingStatus = '';
       return {...state, loadingStatus};
+    case SET_ACTIVE_TAG:
+      return {
+        ...state,
+        activeTag: action.tag
+      }
     default:
       return state;
   }
@@ -289,6 +301,7 @@ export default combineReducers({
 const loadingStatus = state => state.ui.loadingStatus;
 
 const activeItemId = state => state.ui.activeItemId;
+const activeTag = state => state.ui.activeTag;
 const activeItemCollection = state => state.ui.activeItemCollection;
 const connectedItems = state => state.ui.connectedItems;
 const hoveredItemCollection = state => state.ui.hoveredItemCollection;
@@ -306,6 +319,7 @@ const links = state => state.data.links;
  * @type {object}
  */
 export const selector = createStructuredSelector({
+  activeTag,
   activeItemId,
   activeItemCollection,
   connectedItems,
