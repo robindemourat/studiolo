@@ -8,6 +8,7 @@ import 'react-image-gallery/styles/scss/image-gallery.scss';
 
 export default ({
   item = {},
+  showDates = false,
   router,
   onMouseEnter,
   onMouseLeave,
@@ -48,7 +49,7 @@ export default ({
       <h3
         className="item-name">
         <a>
-          <span className="item-title" onClick={onFocus}>{titre}</span>
+          <span className="item-title" onClick={onFocus}>{titre}{showDates && item.date ? ` (${item.date})` : ''}</span>
           <button className="linked-button" onClick={onToggleLinkedElements}>🔗</button>
         </a>
       </h3>

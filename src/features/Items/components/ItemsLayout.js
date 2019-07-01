@@ -39,6 +39,7 @@ const ItemsLayout = ({
         title={'pièces'}
         description={fieldsMetadata['pièces'].description}
         items={collections['pièces']}
+        showDates
         router={router}
         onItemEnter={itemIsHovered}
         onItemLeave={itemIsUnHovered}

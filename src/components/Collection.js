@@ -7,6 +7,7 @@ export default ({
   description = '',
   items = [],
   router,
+  showDates = false,
 
   activeItemId,
 
@@ -76,6 +77,7 @@ export default ({
                 <Item
                   key={index}
                   item={item}
+                  showDates={showDates}
                   router={router}
                   onMouseEnter={onMouseEnter}
                   onMouseLeave={onMouseLeave}
