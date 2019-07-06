@@ -7,6 +7,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {omit} from 'lodash';
 
 import EditorLayout from './EditorLayout';
 import * as duck from '../duck';
@@ -95,8 +96,10 @@ class EditorContainer extends Component {
     if (pieces) {
       if (onlyModified) {
         pieces = pieces.filter(p => p.traite === 'oui').map(p => {
-          const newP = Object.assign({}, p);
-          delete p.traite;
+          let newP = Object.assign({}, p);
+          newP = omit(newP, 'traite')
+          newP = omit(newP, 'collection')
+          newP = omit(newP, 'pièces')
           return newP;
         });
       }
