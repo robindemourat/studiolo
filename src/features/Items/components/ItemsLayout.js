@@ -102,15 +102,16 @@ const ItemsLayout = ({
             const handleClick = () => {
               if (item.collection === activeTag) {
                 setActiveTag(undefined);
-              } else {
-                setActiveTag(item.collection)
               }
-            }
+ else {
+                setActiveTag(item.collection);
+              }
+            };
             return (
-              <span onClick={handleClick} className={`tag ${activeTag && activeTag === item.collection ? 'is-active': ''}`} key={index}>
+              <span onClick={handleClick} className={`tag ${activeTag && activeTag === item.collection ? 'is-active' : ''}`} key={index}>
                 {item.collection}
               </span>
-            )
+            );
           })
         }
       </div>
@@ -133,7 +134,7 @@ const ItemsLayout = ({
               return true;
             })
             .map((item, index) => {
-              const name = item.titre || item.nom;
+              const name = item.titre || item.nom;
               const move = () => {
                 const search = `cabinet?focus=${item.id}`;
                 router.push(search);

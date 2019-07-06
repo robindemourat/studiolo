@@ -1,0 +1,320 @@
+/**
+ * style definitions for the Editor component
+ *
+ * @module inventaire/features/Editor
+ */
+
+@import '../../../parameters.scss';
+
+
+
+/*
+ * Primary layout
+ */
+
+.inventaire-Editor
+{
+  display: flex;
+  flex-flow: row nowrap;
+
+  padding: $gutter-medium;
+
+  overflow: hidden;
+
+  height: 100%;
+
+  .tags-list{
+    padding: 0;
+    list-style: none;
+
+    li{
+      background: lightgrey;
+      padding: .5rem;
+      display:  inline-block;
+      margin: .5rem;
+      cursor: pointer;
+    }
+  }
+
+  .pieces-list{
+    padding: 0;
+    list-style: none;
+    li{
+      cursor: pointer;
+      &:hover{
+        color: red;
+      }
+      &.active {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .dl-btn{
+    cursor: pointer;
+    background: black;
+    color: white;
+    padding: .5rem;
+  }
+
+  .works{
+    flex: 1;
+  }
+
+  .secondary{
+    display: flex;
+    flex-flow: row wrap;
+    overflow: hidden;
+    flex: 5;
+  }
+
+  .works,
+  .secondary,
+  .aside{
+    max-width: 100%;
+    transition: all $transition-default ease;
+  }
+
+  .works.inactive,
+  .secondary.inactive{
+    max-width: 0;
+  }
+
+  .secondary.active{
+    flex: 1;
+  }
+
+  .aside{
+    overflow: auto;
+    &.inactive{
+      max-width: 0;
+    }
+    &.active{
+      max-width: 100%;
+      flex: 1;
+      border: 1px solid black;
+      padding: $gutter-large;
+      margin: $gutter-large;
+    }
+  }
+
+  .connected-Editor{
+    padding: 0;
+    margin :0;
+    .connected-item{
+      list-style: none;
+      margin-bottom: $gutter-medium;
+      // padding: 0;
+      .anchor{
+        cursor: pointer;
+        margin: 0;
+        padding: 0;
+        .collection{
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  .inventaire-Collection {
+    flex: 1;
+    display: flex;
+    flex-flow: column wrap;
+    align-Editor: stretch;
+    height: 100%;
+
+    transition: all $transition-default ease;
+
+    .collection-header{
+      min-height: 4rem;
+        border-bottom: 1px solid black;
+        cursor: pointer;
+        margin-right: .3rem;
+        box-sizing: border-box;
+      .title{
+        margin-right: $gutter-small;
+        font-size: $fontsize-medium;
+        transition: all $transition-default ease;
+      }
+      .description{
+        transition: all $transition-default ease;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+      }
+      &:hover{
+        color: brown;
+        border-bottom: 1px solid brown;
+        padding-bottom: $gutter-medium;
+        .title{
+          font-size: $fontsize-medium * 1.3;
+          margin-top: .5rem;
+        }
+        .description{
+          max-height: 100rem;
+          opacity: 1;
+        }
+      }
+    }
+
+      
+
+    .Editor-list {
+      margin: 0;
+      padding: 0;
+      flex: 1;
+      overflow: auto;
+    }
+    .inventaire-Item{
+
+      transition: all $transition-default ease;
+
+      margin: 0;
+      list-style: none;
+      .item-body
+      {
+        display: none;
+        position : relative;
+      }
+      .item-name{
+        font-size: $fontsize-medium;
+        cursor: pointer;
+        transition: all $transition-default ease;
+        margin-bottom: 0;
+
+        opacity: .6;
+
+        .linked-button{
+          opacity: 0;
+          transition: all .5s ease;
+        }
+        &:hover{
+          opacity: 1;
+          .item-title{
+            opacity: .5;
+            &:hover{
+              opacity: 1;
+            }
+          }
+
+          .linked-button{
+            opacity: .5;
+            &:hover{
+              opacity: 1;
+            }
+          }
+        }
+      }
+      &.active{
+        .linked-button{
+          opacity: 1;
+        }
+      }
+      &.selected{
+        .item-name,
+        .item-name:hover{
+          .linked-button{
+            opacity: 0;
+          }
+        }
+      }
+
+      .item-collection{
+        padding: 0;
+        margin: 0;
+        font-style :italic;
+        padding-bottom: $gutter-medium;
+        padding-bottom: $gutter-medium;
+        border-bottom: 1px solid black;
+      }
+
+      .item-back{
+        cursor: pointer;
+        &:hover{
+          font-weight: 800;
+        }
+      }
+
+      .single-image{
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        background: rgba(0,0,0,0.05);
+        margin-bottom : $gutter-medium;
+        img{
+          max-width: 100%;
+          max-height: 30rem;
+        }
+      }
+
+      .item-video-wrapper{
+        // padding-right: $gutter-medium;
+        display: block;
+        position: relative;
+      }
+
+      color: $color-text-dark;
+
+      &.active{
+        color: $color-text-dark;
+      }
+      &.related{
+        color: $color-text-medium;
+      }
+      &.inactive{
+        color: $color-text-pale;
+        &:not(.same-collection) {
+          .item-name{
+            padding: 0;
+            font-size: .1rem;
+          }        
+        }
+      }
+
+      &.selected{
+        .item-name{
+          font-size: $fontsize-large;
+        }
+        .item-body {
+          display: block;
+        }
+      }
+    }
+
+    &.active{
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    &.inactive{
+      max-width: 0;
+      overflow: hidden;
+    }
+
+    &.active,&.inactive{
+      .inventaire-Item{
+        max-height: 0;
+        &.selected{
+          max-height: 100%;
+        }
+      }
+    }
+  }
+
+  .tags{
+    margin-bottom: 1rem;
+  }
+
+  .tag{
+    color: white;
+    background: #333;
+    border-radius: 5px;
+    padding: .5rem;
+    margin-right: .5rem;
+    cursor: pointer;
+    opacity: .5;
+    &.is-active{
+      opacity: 1;
+    }
+  }
+}

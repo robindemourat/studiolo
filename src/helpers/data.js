@@ -18,8 +18,8 @@ export const detabletopify = (data) =>
     );
   });
 
-export const fetchData = (dataKey) =>
-  process.env.NODE_ENV === 'production' ?
+export const fetchData = (dataKey, forceDynamic) =>
+  process.env.NODE_ENV === 'production' && !forceDynamic ?
     getStatic() :
     getSpreadsheet(dataKey)
         .then(result => detabletopify(result));

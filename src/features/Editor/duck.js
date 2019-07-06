@@ -50,6 +50,11 @@ export const ITEM_IS_UNHOVERED = 'ITEM_IS_UNHOVERED';
 export const SET_ACTIVE_TAG = 'SET_ACTIVE_TAG';
 
 
+// real
+export const SET_CURRENT_PIECE_INDEX = 'SET_CURRENT_PIECE_INDEX';
+export const UPDATE_PIECE = 'UPDATE_PIECE';
+
+
 /*
  * ===========
  * ===========
@@ -64,7 +69,7 @@ export const SET_ACTIVE_TAG = 'SET_ACTIVE_TAG';
 export const getItems = () => ({
   type: GET_ITEMS,
   promise: () =>
-    fetchData(dataKey)
+    fetchData(dataKey, true)
       .then(result =>
         cleanIdioms(result, {
           collectionsToRemove,
@@ -108,6 +113,19 @@ export const setActiveTag = tag => ({
   tag
 });
 
+// real
+
+export const setCurrentPieceIndex = (currentPieceIndex = 0) => ({
+  type: SET_CURRENT_PIECE_INDEX,
+  currentPieceIndex,
+});
+
+export const updatePiece = (piece, pieceIndex) => ({
+  type: UPDATE_PIECE,
+  piece,
+  pieceIndex
+});
+
 /*
  * ===========
  * ===========
@@ -142,6 +160,9 @@ const UI_DEFAULT_STATE = {
   colorGradientEnd: '#FFF',
   gradientDirection: 'to top',
   activeTag: undefined,
+
+  // real
+  currentPieceIndex: 0,
 };
 /**
  * This redux reducer handles the ui state management (screen & modals opening)
@@ -155,6 +176,12 @@ function ui(state = UI_DEFAULT_STATE, action) {
   let activeItemCollection;
   let connectedItems;
   switch (action.type) {
+
+    case SET_CURRENT_PIECE_INDEX:
+        return {
+          ...state,
+          currentPieceIndex: action.currentPieceIndex
+        };
 
     case SET_ACTIVE_ITEM_ID:
         const active = state.nodes.find(n => n.id === action.id);
@@ -226,11 +253,6 @@ function ui(state = UI_DEFAULT_STATE, action) {
     case GET_ITEMS + '_RESET':
       loadingStatus = '';
       return {...state, loadingStatus};
-    case SET_ACTIVE_TAG:
-      return {
-        ...state,
-        activeTag: action.tag
-      };
     default:
       return state;
   }
@@ -257,6 +279,19 @@ function data(state = DATA_DEFAULT_STATE, action) {
       };
     case GET_ITEMS + '_FAIL':
       return state;
+    case UPDATE_PIECE:
+        return {
+          ...state,
+          collections: {
+            ...state.collections,
+            pièces: state.collections['pièces'].map((piece, index) => {
+              if (index === action.pieceIndex) {
+                return action.piece;
+              }
+              return piece;
+            })
+          }
+        };
     default:
       return state;
   }
@@ -314,6 +349,10 @@ const collections = state => state.data.collections;
 const collectionsNames = state => Object.keys(state.data.collections);
 const nodes = state => state.data.nodes;
 const links = state => state.data.links;
+
+// real
+const currentPieceIndex = state => state.ui.currentPieceIndex;
+
 /**
  * The selector is a set of functions for accessing this feature's state
  * @type {object}
@@ -336,4 +375,7 @@ export const selector = createStructuredSelector({
   collectionsNames,
   nodes,
   links,
+
+  // real
+  currentPieceIndex,
 });
