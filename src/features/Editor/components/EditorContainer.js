@@ -97,9 +97,9 @@ class EditorContainer extends Component {
       if (onlyModified) {
         pieces = pieces.filter(p => p.traite === 'oui').map(p => {
           let newP = Object.assign({}, p);
-          newP = omit(newP, 'traite')
-          newP = omit(newP, 'collection')
-          newP = omit(newP, 'pièces')
+          newP = omit(newP, 'traite');
+          newP = omit(newP, 'collection');
+          newP = omit(newP, 'pièces');
           return newP;
         });
       }
