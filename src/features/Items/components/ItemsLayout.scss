@@ -137,6 +137,9 @@
 
       margin: 0;
       list-style: none;
+      &.is-hidden{
+        display: none;
+      }
       .item-body
       {
         display: none;
@@ -269,6 +272,9 @@
 
   .tags{
     margin-bottom: 1rem;
+    display: flex;
+
+flex-flow: row wrap;
   }
 
   .tag{
@@ -277,6 +283,7 @@
     border-radius: 5px;
     padding: .5rem;
     margin-right: .5rem;
+    margin-bottom: .5rem;
     cursor: pointer;
     opacity: .5;
     &.is-active{

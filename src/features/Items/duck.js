@@ -61,10 +61,10 @@ export const SET_ACTIVE_TAG = 'SET_ACTIVE_TAG';
  * ===========
  * ===========
  */
-export const getItems = () => ({
+export const getItems = (forceDynamic) => ({
   type: GET_ITEMS,
   promise: () =>
-    fetchData(dataKey)
+    fetchData(dataKey, forceDynamic)
       .then(result =>
         cleanIdioms(result, {
           collectionsToRemove,

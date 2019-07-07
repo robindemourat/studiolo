@@ -10,7 +10,9 @@ export const detabletopify = (data) =>
     resolve(
       Object.keys(data).reduce((res, key) => ({
         ...res,
-        [key]: data[key].elements.map(element => ({
+        [key]: data[key].elements
+        .filter(e => e.cacher !== 'oui')
+        .map(element => ({
           ...element,
           collection: key
         })),

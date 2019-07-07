@@ -23,6 +23,19 @@
 
   height: 100%;
 
+  table{
+    background: lightgrey;
+    width: 100%;
+    thead{
+      background: grey;
+      color: white;
+    }
+    td{
+      padding: 1rem;
+    }
+  }
+
+
   .tags-list{
     padding: 0;
     list-style: none;
@@ -33,6 +46,13 @@
       display:  inline-block;
       margin: .5rem;
       cursor: pointer;
+      &.is-valid{
+        background: lightgreen;
+      }
+      &.is-invalid{
+        background: red;
+        color: white;
+      }
     }
   }
 

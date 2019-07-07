@@ -114,7 +114,20 @@ const EditorLayout = ({
           <h1>{currentPiece.titre}</h1>
           <iframe style={{background: 'white', height: '50vh', width: '100%'}} src={currentPiece.url} />
           <p><a target="blank" rel="noopener" href={currentPiece.url}>Aller sur le site</a></p>
-
+          <div>
+            <table className="table">
+              <thead>
+                <tr>
+                  <td>Médiums</td>
+                  <td>Matériaux</td>
+                </tr>
+              </thead>
+              <tr>
+                <td>{currentPiece.mediums.join(',')}</td>
+                <td>{currentPiece.materiaux.join(',')}</td>
+              </tr>
+            </table>
+          </div>
           <div>
             <h2>Matériaux</h2>
             <h3>Matériaux déjà entrés</h3>
@@ -128,12 +141,13 @@ const EditorLayout = ({
                   );
                 };
                 return (
-                  <li onClick={onRemove} key={materiau}>
+                  <li className={!fieldsMetadata.materiaux.enum.find(option => option === materiau) ? 'is-invalid' : 'is-valid'} onClick={onRemove} key={materiau}>
                     {materiau} <button>x</button>
                   </li>
                 );
               })}
             </ul>
+
             <h3>Matériaux possibles</h3>
             <ul className="tags-list">
               {
@@ -167,7 +181,7 @@ const EditorLayout = ({
                   );
                 };
                 return (
-                  <li onClick={onRemove} key={medium}>
+                  <li className={!fieldsMetadata.mediums.enum.find(option => option === medium) ? 'is-invalid' : 'is-valid'} onClick={onRemove} key={medium}>
                     {medium} <button >x</button>
                   </li>
                 );

@@ -51,7 +51,9 @@ class LayoutContainer extends Component {
   }
 
   componentWillMount () {
-    this.props.actions.getItems();
+    const query = this.props.router.location.query;
+    const forceDynamic = query.dynamic;
+    this.props.actions.getItems(forceDynamic);
   }
 
   shouldComponentUpdate() {

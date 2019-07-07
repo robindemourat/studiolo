@@ -45,7 +45,7 @@ export default ({
     onMouseLeave();
   };
   return (
-    <li className={'inventaire-Item ' + (status || '')}>
+    <li className={'inventaire-Item ' + (status || '') + (item.cacher === 'oui' ? 'is-hidden' : '')}>
       <h3
         className="item-name">
         <a>

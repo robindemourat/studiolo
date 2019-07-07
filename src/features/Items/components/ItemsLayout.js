@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import {uniqBy} from 'lodash';
 import Collection from '../../../components/Collection';
 import config from '../../../../config';
+import Tooltip from 'react-tooltip';
 
 import './ItemsLayout.scss';
 
@@ -22,7 +23,7 @@ const ItemsLayout = ({
   hoveredItemId,
   hoveredItemCollection,
 
-  collectionsNames = [],
+  // collectionsNames = [],
   collections = {},
   relatedItemsIds = [],
   router,
@@ -55,20 +56,20 @@ const ItemsLayout = ({
     </section>
     <section className={'secondary ' + (activeItemCollection ? activeItemCollection === 'pièces' ? 'inactive' : 'active' : '')}>
       {
-          collectionsNames
+          config.collectionsToShow
           .filter(name => name !== 'pièces')
-          .sort((a, b) => {
-            if (a === 'personnes') {
-              return -1;
-            }
-            else if (!config.extractedFields.includes(a) && config.extractedFields.includes(b)) {
-              return -1;
-            }
-             else if (a > b) {
-              return 1;
-            }
-            return -1;
-          })
+          // .sort((a, b) => {
+          //   if (a === 'personnes') {
+          //     return -1;
+          //   }
+          //   else if (!config.extractedFields.includes(a) && config.extractedFields.includes(b)) {
+          //     return -1;
+          //   }
+          //    else if (a > b) {
+          //     return 1;
+          //   }
+          //   return -1;
+          // })
           .map((collectionName, index) => {
             return (
               <Collection
@@ -103,13 +104,18 @@ const ItemsLayout = ({
               if (item.collection === activeTag) {
                 setActiveTag(undefined);
               }
- else {
+              else {
                 setActiveTag(item.collection);
               }
             };
             return (
-              <span onClick={handleClick} className={`tag ${activeTag && activeTag === item.collection ? 'is-active' : ''}`} key={index}>
-                {item.collection}
+              <span
+                data-for="tooltip"
+                data-tip={fieldsMetadata[item.collection].description}
+                onClick={handleClick}
+                className={`tag ${activeTag && activeTag === item.collection ? 'is-active' : ''}`}
+                key={index}>
+                {fieldsMetadata[item.collection].title}
               </span>
             );
           })
@@ -150,6 +156,7 @@ const ItemsLayout = ({
           }
       </ul>
     </aside>
+    <Tooltip effect="solid" place="bottom" id="tooltip" />
   </section>
 );
 
