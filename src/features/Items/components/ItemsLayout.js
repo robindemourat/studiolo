@@ -93,6 +93,7 @@ const ItemsLayout = ({
         }
     </section>
     <aside className={'aside ' + (activeItemId ? 'active' : 'inactive')}>
+      <h3>Éléments liés</h3>
       <div className="tags">
         {
           uniqBy(
