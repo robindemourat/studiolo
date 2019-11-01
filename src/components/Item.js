@@ -50,7 +50,9 @@ export default ({
         className="item-name">
         <a>
           <span className="item-title" onClick={onFocus}>{titre}{showDates && item.date ? ` (${item.date})` : ''}</span>
-          <button data-tip={`afficher les éléments liés à "${titre}"`} data-for="tooltip" className="linked-button" onClick={onToggleLinkedElements}>🔗</button>
+          <button
+            data-tip={`afficher les éléments liés à "${titre}"`} data-for="tooltip" className="linked-button"
+            onClick={onToggleLinkedElements}>🔗</button>
         </a>
       </h3>
       <div className="item-body">

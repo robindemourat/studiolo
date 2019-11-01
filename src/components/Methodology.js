@@ -85,35 +85,35 @@ export default () => (
     <p>Le terme de "matériaux" est ici utilisé en référence à Tim Ingold, et pour réunir des éléments qualifiés différemment suivant les champs de recherche ("corpus", "données", "sources", ...)</p>
     <p>Il s'agit d'une taxonomie fermée qui restitue la nature et le contexte d'obtention des "matériaux" mis en scène dans la publication :</p>
     <ul>
-    <li>matériaux relevant de productions culturelles existantes</li>
-        <li>matériaux issus d’une exposition antérieure</li>
-        <li>matériaux issus d’une publication imprimée antérieure</li>
-        <li>matériaux issus d’une publication numérique antérieure</li>
-        <li>productions et oeuvres textuelles</li>
-        <li>productions et oeuvres visuelles</li>
-        <li>productions et oeuvres audiovisuelles</li>
-        <li>productions et oeuvres numériques</li>
-        <li>matériaux issus de terrain</li>
-        <li>photographies issues d'un terrain</li>
-        <li>transcriptions écrite d’entretien</li>
-        <li>captations vidéo d’entretiens</li>
-        <li>captations audio d’entretiens</li>
-        <li>captations vidéos issues d’un terrain</li>
-        <li>captations audio issues d’un terrain</li>
-        <li>documents numérisés issu d’un terrain</li>
-        <li>jeux de données produits dans le cadre de l’enquête</li>
-        <li>matériaux issus de fonds d’archives</li>
-        <li>enregistrements vidéos issus d’archives</li>
-        <li>enregistrements audio issus d’archives</li>
-        <li>photographies issues d’archives</li>
-        <li>documents numérisés issus d’archives</li>
-        <li>jeux de données issues de fonds d’archive</li>
-        <li>matériaux issus du web</li>
-        <li>documents vidéos issus du web</li>
-        <li>documents audio issus du web</li>
-        <li>jeux de données récupérés sur le web (open data)</li>
-        <li>documents nativement numériques</li>
-        <li>contributions des visiteurs</li>
+      <li>matériaux relevant de productions culturelles existantes</li>
+      <li>matériaux issus d’une exposition antérieure</li>
+      <li>matériaux issus d’une publication imprimée antérieure</li>
+      <li>matériaux issus d’une publication numérique antérieure</li>
+      <li>productions et oeuvres textuelles</li>
+      <li>productions et oeuvres visuelles</li>
+      <li>productions et oeuvres audiovisuelles</li>
+      <li>productions et oeuvres numériques</li>
+      <li>matériaux issus de terrain</li>
+      <li>photographies issues d'un terrain</li>
+      <li>transcriptions écrite d’entretien</li>
+      <li>captations vidéo d’entretiens</li>
+      <li>captations audio d’entretiens</li>
+      <li>captations vidéos issues d’un terrain</li>
+      <li>captations audio issues d’un terrain</li>
+      <li>documents numérisés issu d’un terrain</li>
+      <li>jeux de données produits dans le cadre de l’enquête</li>
+      <li>matériaux issus de fonds d’archives</li>
+      <li>enregistrements vidéos issus d’archives</li>
+      <li>enregistrements audio issus d’archives</li>
+      <li>photographies issues d’archives</li>
+      <li>documents numérisés issus d’archives</li>
+      <li>jeux de données issues de fonds d’archive</li>
+      <li>matériaux issus du web</li>
+      <li>documents vidéos issus du web</li>
+      <li>documents audio issus du web</li>
+      <li>jeux de données récupérés sur le web (open data)</li>
+      <li>documents nativement numériques</li>
+      <li>contributions des visiteurs</li>
     </ul>
     <h3 >Qualificatifs</h3>
     <p>Il s'agit d'extraire les modalités selon lesquelles les créateurs de chaque pièce la désignent.</p>
