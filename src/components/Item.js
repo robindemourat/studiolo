@@ -25,8 +25,8 @@ export default ({
     // console.log('on focus, status', status);
     // if (status === 'active') {
       const search = `cabinet?focus=${id}`;
-      router.push(search);
       onSelect(item.id);
+      router.push(search);
     // } else {
     //   onMouseEnter();
     // }

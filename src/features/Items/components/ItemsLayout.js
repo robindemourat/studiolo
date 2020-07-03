@@ -35,27 +35,32 @@ const ItemsLayout = ({
     unsetActiveItemId,
     setActiveTag,
   }
-}) => (
-  <section className="inventaire-Items">
-    <section className={'works ' + (activeItemCollection ? activeItemCollection === 'pièces' ? 'active' : 'inactive' : '')}>
-      <Collection
-        title={'pièces'}
-        description={fieldsMetadata['pièces'].description}
-        items={collections['pièces']}
-        showDates
-        router={router}
-        onItemEnter={itemIsHovered}
-        onItemLeave={itemIsUnHovered}
-        setActiveItemId={setActiveItemId}
-        activeItemId={activeItemId}
-        hoveredItemId={hoveredItemId}
-        hoveredItemCollection={hoveredItemCollection}
-        relatedItemsIds={relatedItemsIds}
-        unsetActiveItemId={unsetActiveItemId}
-        status={activeItemCollection ? activeItemCollection === 'pièces' ? 'active' : 'inactive' : undefined} />
-    </section>
-    <section className={'secondary ' + (activeItemCollection ? activeItemCollection === 'pièces' ? 'inactive' : 'active' : '')}>
-      {
+}) => {
+  const activeItem = activeItemId && activeItemCollection ?
+  collections[activeItemCollection].find(({id}) => id === activeItemId)
+   : undefined;
+   const hasColumn = activeItem ? config.collectionsToShow.find(name => name === activeItem.collection) : null;
+  return (
+    <section className="inventaire-Items">
+      <section className={'works ' + (hasColumn || !activeItem ? '' : 'hidden ') + (activeItemCollection ? activeItemCollection === 'pièces' ? 'active' : 'inactive' : '')}>
+        <Collection
+          title={'pièces'}
+          description={fieldsMetadata['pièces'].description}
+          items={collections['pièces']}
+          showDates
+          router={router}
+          onItemEnter={itemIsHovered}
+          onItemLeave={itemIsUnHovered}
+          setActiveItemId={setActiveItemId}
+          activeItemId={activeItemId}
+          hoveredItemId={hoveredItemId}
+          hoveredItemCollection={hoveredItemCollection}
+          relatedItemsIds={relatedItemsIds}
+          unsetActiveItemId={unsetActiveItemId}
+          status={activeItemCollection ? activeItemCollection === 'pièces' ? 'active' : 'inactive' : undefined} />
+      </section>
+      <section className={'secondary ' + (hasColumn || !activeItem ? '' : 'hidden ') + (activeItemCollection ? activeItemCollection === 'pièces' ? 'inactive' : 'active' : '')}>
+        {
           config.collectionsToShow
           .filter(name => name !== 'pièces')
           // .sort((a, b) => {
@@ -91,11 +96,13 @@ const ItemsLayout = ({
             );
           })
         }
-    </section>
-    <aside className={'aside ' + (activeItemId ? 'active' : 'inactive')}>
-      <h3>Éléments liés</h3>
-      <div className="tags">
-        {
+      </section>
+      <aside className={'aside ' + (activeItemId ? 'active' : 'inactive')}>
+        <h3>Éléments liés {activeItem ?
+          <span className="active-item-title"> {fieldsMetadata[activeItemCollection].link} {activeItem.titre || activeItem.nom}</span>
+        : null}</h3>
+        <div className="tags">
+          {
           uniqBy(
             connectedItems,
             d => d.collection
@@ -121,9 +128,9 @@ const ItemsLayout = ({
             );
           })
         }
-      </div>
-      <ul className="connected-items">
-        {
+        </div>
+        <ul className="connected-items">
+          {
             uniqBy(
               connectedItems,
               d => d.id
@@ -155,11 +162,12 @@ const ItemsLayout = ({
               );
             })
           }
-      </ul>
-    </aside>
-    <Tooltip effect="solid" place="bottom" id="tooltip" />
-  </section>
-);
+        </ul>
+      </aside>
+      <Tooltip effect="solid" place="bottom" id="tooltip" />
+    </section>
+  );
+};
 
 /**
  * Context data used by the component

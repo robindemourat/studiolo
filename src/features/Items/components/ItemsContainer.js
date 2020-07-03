@@ -55,6 +55,22 @@ class ItemsContainer extends Component {
     if (query && query.focus) {
       this.props.actions.setActiveItemId(query.focus);
     }
+    if (query && query.aside) {
+      this.props.actions.setActiveTag(query.aside);
+    }
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    setTimeout(() => {
+      if (this.props.activeItemId !== nextProps.activeItemId && !nextProps.activeTag) {
+        let col = Object.keys(nextProps.collections)[0];
+        if (nextProps.connectedItems.find(el => el.collection === 'pièces')) {
+          col = 'pièces';
+        }
+        this.props.actions.setActiveTag(col);
+       }
+    });
+
   }
 
   shouldComponentUpdate() {

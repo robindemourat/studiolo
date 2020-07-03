@@ -25,6 +25,7 @@
 
   .works{
     flex: 1;
+
   }
 
   .secondary{
@@ -39,7 +40,12 @@
   .aside{
     max-width: 100%;
     transition: all $transition-default ease;
+    &.hidden{
+      max-width: 0;
+    }
   }
+
+  
 
   .works.inactive,
   .secondary.inactive{
