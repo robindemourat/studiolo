@@ -53,6 +53,9 @@ class LayoutContainer extends Component {
   componentWillMount () {
     const query = this.props.router.location.query;
     const forceDynamic = query.dynamic;
+    if (forceDynamic) {
+      console.info('dynamic mode, will fetch data from gdrive directly')
+    }
     this.props.actions.getItems(forceDynamic);
   }
 
