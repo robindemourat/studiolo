@@ -1,7 +1,109 @@
 {
   "resetTimeMs": 2000,
-  "dataKey": "your-spreadsheet-share-url",
-  "collectionsToRemove": ["bordel", "editors"],
+  "dataKey": "URL of the spreadsheet here",
+  "collectionsToRemove": ["bordel", "éditeurs", "répertoires", "langues"],
+  "collectionsToShow": ["pièces", "materiaux", "genres", "perspectives", "mediums"],
   "nameFields": ["nom", "titre"],
-  "extractedFields": ["tags", "personnes"]
+  "extractedFields": ["personnes", "perspectives", "mediums", "materiaux", "genres"],
+  "fieldsMetadata": {
+    "pièces": {
+      "title": "pièces",
+      "link": "à la pièce",
+      "description": "Une pièce est identifiée comme le produit cohérent et finalisé d'un geste de publication par un collectif comprenant un chercheur en arts & lettres et sciences humaines et sociales"
+    },
+    "organisations": {
+      "title": "organisations",
+      "link": "à l'organisation",
+      "description": "Une organisation est un collectif identifiable et mu par des buts déterminés, impliqué dans l’élaboration d’une pièce. Ce terme peut désigner par exemple : un laboratoire ou un centre de recherche, une bibliothèque, une entreprise ou maison d’édition, une institution publique ou privée."
+    },
+    "personnes": {
+      "title": "personnes",
+      "link": "à la personne",
+      "description": "Une personne référencée dans le cabinet peut être impliquée dans la confection de l'une des pièces au titre de divers rôles (chercheur, écrivain, éditeur, développeur, designer)"
+    },
+    "collections": {
+      "title": "collections éditoriales",
+      "link": "à la collection",
+      "description": "Une collection est un groupement délimité et intentionnel de pièces. C’est par exemple une collection d’ouvrages ou de cédéroms, une revue universitaire en ligne, ou encore un recueil de textes."
+    },
+    "perspectives": {
+      "title": "champs de recherche",
+      "link": "au champ de recherche",
+      "description": "Il s'agit de désigner les différentes communautés savantes auxquels une pièce se rapporte, en respectant les spécificités scientifiques et géographiques. Les problèmes de taxonomie et de classement sont contournés par un mode de description cumulatif des disciplines, aires, domaines, champs ... attachés à chaque pièce ou bien par défaut à ses créateurs."
+    },
+    "mediums": {
+      "title": "techniques d'écriture",
+      "link": "à la technique d'écriture",
+      "description": "Il s’agit des techniques d'écriture - le terme étant entendu dans un sens large - employées dans le cadre de la publication.",
+      "enum": [
+        "texte",
+        "musique",
+        "schématisation",
+        "visualisation",
+        "navigation",
+        "animation",
+        "disposition spatiale",
+        "mécanismes d’interactivité",
+        "vidéo",
+        "voix parlée",
+        "dessin"
+      ]
+    },
+    "materiaux": {
+      "title": "matériaux de recherche",
+      "link": "aux matériaux de recherche de type : ",
+      "description": "Il s’agit des différents matériaux ('sources', 'données', 'corpus', 'documents', 'objets d'étude') issus des pratiques de recherche qui nourrissent la production d' une pièce.",
+      "enum": [
+        "matériaux relevant de productions culturelles existantes",
+        "matériaux issus d’une exposition antérieure",
+        "matériaux issus d’une publication imprimée antérieure",
+        "matériaux issus d’une publication numérique antérieure",
+        "productions et oeuvres textuelles",
+        "productions et oeuvres visuelles",
+        "productions et oeuvres audiovisuelles",
+        "productions et oeuvres numériques",
+        "matériaux issus de terrain",
+        "photographies issues d'un terrain",
+        "transcriptions écrite d’entretien",
+        "captations vidéo d’entretiens",
+        "captations audio d’entretiens",
+        "captations vidéos issues d’un terrain",
+        "captations audio issues d’un terrain",
+        "documents numérisés issu d’un terrain",
+        "jeux de données produits dans le cadre de l’enquête",
+        "matériaux issus de fonds d’archives",
+        "enregistrements vidéos issus d’archives",
+        "enregistrements audio issus d’archives",
+        "photographies issues d’archives",
+        "documents numérisés issus d’archives",
+        "jeux de données issues de fonds d’archive",
+        "matériaux issus du web",
+        "documents vidéos issus du web",
+        "documents audio issus du web",
+        "jeux de données récupérés sur le web (open data)",
+        "documents nativement numériques",
+        "contributions des visiteurs"
+      ]
+    },
+    "plateformes": {
+      "title": "plateformes",
+      "link": "à la plateforme",
+      "description": "Il s'agit d'institutions qui fournissent à la fois un dispositif technique d'écriture et de lecture, et un espace éditorial et social centralisé."
+    },
+    "genres": {
+      "title": "qualificatifs",
+      "link": "au qualificatif",
+      "description": "Il s’agit des expressions selon lesquelles les créateurs d’une pièce désignent cette dernière et tentent de qualifier son statut et son genre éditorial."
+    },
+    "pays": {
+      "title": "pays d'élaboration",
+      "link": "au pays",
+      "description": "Il s’agit du ou des pays dans lesquels a été élaborée une pièces. L’objectif est de situer le contexte d’élaboration de la pièce de manière à pouvoir l’analyser en fonction des modes d’organisation et des histoires de chaque théâtre national."
+    },
+    "technologies": {
+      "title": "technologies utilisées",
+      "link": "à la technologie",
+      "description": "langages et frameworks utilisés"
+    }
+  }
 }
