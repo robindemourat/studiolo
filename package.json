@@ -71,7 +71,7 @@
     "image-webpack-loader": "^3.3.0",
     "kotatsu": "git+https://github.com/robindemourat/kotatsu.git",
     "mocha": "^4.0.1",
-    "node-sass": "^4.5.2",
+    "node-sass": "^7.0.0",
     "optimist": "^0.6.1",
     "pre-commit": "^1.2.2",
     "raw-loader": "^0.5.1",
